@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jason Page List</title>
+</head>
+<body>
+    <h1>Welcome Home Again, Dawg</h1>
+    <h2 th:utext = "${listOfPerson}"></h2>
+    <h3 ></h3>
+    <table border="9">
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Age</th>
+            <th>Edit</th>
+            <th>Delete</th>
+        </tr>
+        <tr th:each="person:${persons}">
+            <td th:text="${person.id}"></td>
+            <td th:text="${person.name}"></td>
+            <td th:text="${person.age}"></td>
+            <td>
+                <form th:action="@{/hello/update}" th:object="${person}" method="POST">
+                    <input type="hidden" name="id" th:value="${person.id}"/>
+                    <input type="hidden" name="name" th:value="${person.name}"/>
+                    <input type="hidden" name="age" th:value="${person.age}"/>
+                    <input type="submit" value="Update"/>
+                </form>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>
